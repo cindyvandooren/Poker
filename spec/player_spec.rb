@@ -18,4 +18,13 @@ describe Player do
       expect(new_player.hand).to eq(hand)
     end
   end
+
+  describe "#take_bet" do
+    it "should decrease the players pot by the amount" do
+      expect do
+        new_player.take_bet(100)
+      end.to change { new_player.pot }.by(-100)
+    end
+  end
+
 end
