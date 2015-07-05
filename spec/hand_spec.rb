@@ -142,23 +142,43 @@ describe Hand do
     end
   end
 
-  describe "#one_pair?" do
-    pair_set = [
-                  Card.new(:spades, :two),
-                  Card.new(:spades, :three),
-                  Card.new(:diamonds, :two),
-                  Card.new(:clovers, :seven),
-                  Card.new(:hearts, :nine)
-                ]
+  one_pair_set = [
+                   Card.new(:spades, :two),
+                   Card.new(:spades, :three),
+                   Card.new(:diamonds, :two),
+                   Card.new(:clovers, :seven),
+                   Card.new(:hearts, :nine)
+                  ]
 
-    subject(:pair_hand) { Hand.new(pair_hand) }
+  subject(:one_pair_hand) { Hand.new(one_pair_set) }
+
+  describe "#one_pair?" do
     it "returns true if the hand contains a pair" do
-      expect(pair_hand.one_pair?).to be true
+      expect(one_pair_hand.one_pair?).to be true
     end
 
     it "returns false if the hand does not have a pair" do
-      expect(bad_hand.one_pair?).to be true
+      expect(bad_hand.one_pair?).to be false
+    end
+  end
+
+  two_pair_set = [
+                   Card.new(:spades, :two),
+                   Card.new(:spades, :three),
+                   Card.new(:diamonds, :two),
+                   Card.new(:diamonds, :three),
+                   Card.new(:clovers, :five)
+                  ]
+
+  subject(:two_pair_hand) { Hand.new(two_pair_set) }
+
+  describe "#two_pairs?" do
+    it "returns true if the hand contains two pairs" do
+      expect(two_pair_hand.two_pairs?).to be true
     end
 
+    it "returns false if the hand contains only one pair" do
+      expect(one_pair_hand.two_pairs?).to be false
+    end
   end
 end

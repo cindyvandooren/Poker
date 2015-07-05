@@ -39,4 +39,9 @@ class Hand
 
     false
   end
+
+  def one_pair?
+    @cards.map { |card| card.poker_value }.uniq.count == 4
+  end
+
 end
