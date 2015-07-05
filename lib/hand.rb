@@ -79,4 +79,8 @@ class Hand
     poker_values = @cards.map { |card| card.poker_value }
     poker_values.select { |value| poker_values.count(value) == 4 }.uniq.count == 1
   end
+
+  def straight_flush?
+    straight? && flush?
+  end
 end
