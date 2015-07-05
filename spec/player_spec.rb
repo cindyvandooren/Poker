@@ -25,6 +25,19 @@ describe Player do
         new_player.take_bet(100)
       end.to change { new_player.pot }.by(-100)
     end
+
+    it "does not allow bet to be higher than amount in pot" do
+      expect do
+        new_player.take_bet(2000)
+      end.to raise_error("bet can't be higher than pot")
+    end
+
+   describe "#get_winnings" do
+     it "should increase the players bankroll with the winnings" do
+       expect do
+         new_player.get_winnings(100)
+       end.to change { new_player.pot }.by(100)
+     end
   end
 
 end
