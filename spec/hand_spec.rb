@@ -246,4 +246,25 @@ describe Hand do
       expect(bad_hand.flush?).to be false
     end
   end
+
+  full_house_set = [
+                     Card.new(:spades, :four),
+                     Card.new(:hearts, :four),
+                     Card.new(:hearts, :four),
+                     Card.new(:diamonds, :eight),
+                     Card.new(:hearts, :eight)
+                    ]
+
+  subject(:full_house_hand) { Hand.new(full_house_set) }
+
+  describe "#full_house?" do
+    it "returns true if the hand is a full house" do
+      expect(full_house_hand.full_house?).to be true
+    end
+
+    it "returns false if the hand is not a full house" do
+      expect(bad_hand.full_house?).to be false
+    end
+  end
+
 end
