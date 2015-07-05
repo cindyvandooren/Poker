@@ -56,15 +56,16 @@ describe Deck do
     end
   end
 
-  describe "#return(cards)" do
-    subject(:small_deck) { Deck.new(set_cards) }
-    let(:add_cards) do
-      [Card.new(:spades, :one),
-       Card.new(:diamonds, :two),
-       Card.new(:hearts, :three)
-       ]
-    end
+  subject(:small_deck) { Deck.new(set_cards) }
 
+  let(:add_cards) do
+    [Card.new(:spades, :one),
+     Card.new(:hearts, :two),
+     Card.new(:hearts, :three)
+     ]
+   end
+
+  describe "#return(cards)" do
     it "adds the cards to the deck" do
       expect(small_deck.return(add_cards).count).to eq(6)
     end
@@ -76,15 +77,27 @@ describe Deck do
 
   end
 
-  # describe "#take(cards)" do
-  #   it "takes the amount of cards from the front of the deck" do
-  #
-  #
-  #   end
-  #
-  #   it "raises an error when the amount of courst is greater then the size of the deck" do
-  #
-  #   end
-  #
-  # end
+  describe "#take(amount)" do
+    let(:cards) do
+       [ Card.new(:spades, :two),
+         Card.new(:spades, :three),
+         Card.new(:spades, :four),
+         Card.new(:spades, :five),
+         Card.new(:spades, :six),
+         Card.new(:spades, :seven)
+       ]
+    end
+
+    subject(:deck) { Deck.new(cards.dup) }
+
+    it "takes the amount of cards from the front of the deck" do
+      expect(deck.take(2)).to eq(cards[0..1])
+    end
+
+    it "raises error if the deck has not enough cards" do
+      expect { deck.take(7) }.to raise_error("not enough cards in deck")
+      # Apparently to make this test work, expect should
+      # have a block to append the to raise_error to.
+    end
+  end
 end

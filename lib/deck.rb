@@ -31,6 +31,11 @@ class Deck
     @cards.concat(cards)
   end
 
+  def take(amount)
+    raise "not enough cards in deck" if amount > count
+    @cards.shift(amount)
+  end
+
 
 
 
