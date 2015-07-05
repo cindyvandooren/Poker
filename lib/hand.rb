@@ -108,4 +108,8 @@ class Hand
       0
     end
   end
+
+  def beats?(other_hand)
+    points > other_hand.points ? true : false 
+  end
 end
