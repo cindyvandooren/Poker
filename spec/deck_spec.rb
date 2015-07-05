@@ -55,4 +55,36 @@ describe Deck do
       expect(all_cards.shuffle).to_not eq(all_cards)
     end
   end
+
+  describe "#return(cards)" do
+    subject(:small_deck) { Deck.new(set_cards) }
+    let(:add_cards) do
+      [Card.new(:spades, :one),
+       Card.new(:diamonds, :two),
+       Card.new(:hearts, :three)
+       ]
+    end
+
+    it "adds the cards to the deck" do
+      expect(small_deck.return(add_cards).count).to eq(6)
+    end
+
+    it "adds the cards to the back of the deck" do
+      small_deck.return(add_cards)
+      expect(small_deck.cards.last(3)).to match_array(add_cards)
+    end
+
+  end
+
+  # describe "#take(cards)" do
+  #   it "takes the amount of cards from the front of the deck" do
+  #
+  #
+  #   end
+  #
+  #   it "raises an error when the amount of courst is greater then the size of the deck" do
+  #
+  #   end
+  #
+  # end
 end

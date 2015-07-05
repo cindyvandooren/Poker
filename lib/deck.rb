@@ -27,6 +27,10 @@ class Deck
     @deck.cards.shuffle
   end
 
+  def return(cards)
+    @cards.concat(cards)
+  end
+
 
 
 
