@@ -63,7 +63,11 @@ class Hand
       return false if poker_values[index] - poker_values[index - 1] != 1
     end
 
-    true        
+    true
+  end
+
+  def flush?
+    @cards.map { |card| card.suit }.uniq.length == 1
   end
 
 end
