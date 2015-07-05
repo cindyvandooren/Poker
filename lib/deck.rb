@@ -35,8 +35,4 @@ class Deck
     raise "not enough cards in deck" if amount > count
     @cards.shift(amount)
   end
-
-
-
-
 end

@@ -35,16 +35,33 @@ describe Hand do
     end
   end
 
-  # describe "#draw(amount)" do
-  #   it "draws 3 cards from the deck" do
-  #
-  #
-  #   end
-  #
-  #   it "raises an error when hand grows bigger than 5 when drawing" do
-  #
-  #   end
+  let(:new_deck) { double("new_deck", take: new_cards) }
 
+  let(:new_cards) do
+    [ Card.new(:spades, :two),
+      Card.new(:spades, :three),
+      Card.new(:spades, :four),
+      Card.new(:spades, :five),
+      Card.new(:spades, :six),
+      Card.new(:spades, :seven),
+      Card.new(:spades, :eight)
+    ]
+  end
 
+  subject(:new_hand) { Hand.new(new_deck) }
 
+  describe "#draw(amount)" do
+    it "it adds 5 cards from the deck to the hand" do
+      allow(new_deck).to receive(:take).with(5).and_return(new_cards[0..4])
+      new_hand.cards = []
+      new_hand.draw(5)
+      expect(new_hand.count).to eq(5)
+    end
+
+    it "raises an error when hand grows bigger than 5 when drawing" do
+      allow(new_deck).to receive(:take).with(6).and_return(new_cards[0..5])
+      new_hand.cards = []
+      expect{ new_hand.draw(6) }.to raise_error("hand is too big")
+    end
+  end
 end
