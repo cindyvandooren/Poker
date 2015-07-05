@@ -14,11 +14,8 @@ describe Player do
     let(:hand) { double("hand") }
 
     it "should set the players hand" do
-      player.get_hand(hand)
-      expect(player.hand).to eq(hand)
+      new_player.get_hand(hand)
+      expect(new_player.hand).to eq(hand)
     end
   end
-
-
-
 end
