@@ -89,7 +89,6 @@ describe Hand do
 
     subject(:hand_to_return) { Hand.new(new_set) }
 
-
     it "decreases the hand with a number of cards" do
       allow(return_deck).to receive(:return).with(new_set[0..2])
       hand_to_return.return(return_deck, new_set[0..2])
@@ -113,6 +112,16 @@ describe Hand do
     end
   end
 
+  bad_set = [
+               Card.new(:spades, :two),
+               Card.new(:diamonds, :three),
+               Card.new(:hearts, :seven),
+               Card.new(:clovers, :nine),
+               Card.new(:spades, :ten)
+            ]
+
+  subject(:bad_hand) { Hand.new(bad_set) }
+
   describe "#high_card?" do
     high_set = [
                  Card.new(:spades, :king),
@@ -122,23 +131,34 @@ describe Hand do
                  Card.new(:hearts, :seven)
                ]
 
-    bad_set = [
-                 Card.new(:spades, :two),
-                 Card.new(:diamonds, :three),
-                 Card.new(:hearts, :seven),
-                 Card.new(:clovers, :nine),
-                 Card.new(:spades, :ten)
-              ]
-
     subject(:high_hand) { Hand.new(high_set) }
-    subject(:bad_hand) { Hand.new(bad_set) }
 
     it "returns true if the hand has a high card" do
-      expect(high_hand.high_card?).to be(true)
+      expect(high_hand.high_card?).to be true
     end
 
     it "returns false if the hand does not have a high card" do
-      expect(bad_hand.high_card?).to be(false)
+      expect(bad_hand.high_card?).to be false
     end
+  end
+
+  describe "#one_pair?" do
+    pair_set = [
+                  Card.new(:spades, :two),
+                  Card.new(:spades, :three),
+                  Card.new(:diamonds, :two),
+                  Card.new(:clovers, :seven),
+                  Card.new(:hearts, :nine)
+                ]
+
+    subject(:pair_hand) { Hand.new(pair_hand) }
+    it "returns true if the hand contains a pair" do
+      expect(pair_hand.one_pair?).to be true
+    end
+
+    it "returns false if the hand does not have a pair" do
+      expect(bad_hand.one_pair?).to be true
+    end
+
   end
 end
