@@ -41,7 +41,8 @@ class Hand
   end
 
   def one_pair?
-    @cards.map { |card| card.poker_value }.uniq.count == 4
+    poker_values = @cards.map { |card| card.poker_value }
+    poker_values.select { |value| poker_values.count(value) == 2 }.uniq.count == 1
   end
 
   def two_pairs?
@@ -68,6 +69,10 @@ class Hand
 
   def flush?
     @cards.map { |card| card.suit }.uniq.length == 1
+  end
+
+  def full_house?
+    three_of_kind? && one_pair?
   end
 
 end
