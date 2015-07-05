@@ -225,6 +225,25 @@ describe Hand do
     it "returns false if the hand is not a straight" do
       expect(bad_hand.straight?).to be false
     end
+  end
 
+  flush_set = [
+                Card.new(:spades, :two),
+                Card.new(:spades, :four),
+                Card.new(:spades, :seven),
+                Card.new(:spades, :nine),
+                Card.new(:spades, :king)
+              ]
+
+  subject(:flush_hand) { Hand.new(flush_set) }
+
+  describe "#flush?" do
+    it "returns true if the hand is a flush" do
+      expect(flush_hand.flush?).to be true
+    end
+
+    it "returns false if the hand is not a flush" do
+      expect(bad_hand.flush?).to be false
+    end
   end
 end
