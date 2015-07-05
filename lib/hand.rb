@@ -54,4 +54,16 @@ class Hand
     poker_values.select { |value| poker_values.count(value) == 3}.uniq.count == 1
   end
 
+  def straight?
+    poker_values = @cards.map { |card| card.poker_value }.uniq.sort
+
+    return false if poker_values.count < 5
+
+    (1...poker_values.length).each do |index|
+      return false if poker_values[index] - poker_values[index - 1] != 1
+    end
+
+    true        
+  end
+
 end
