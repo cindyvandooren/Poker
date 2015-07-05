@@ -41,4 +41,16 @@ describe Card do
       expect(new_card.value).to be_instance_of(Symbol)
     end
   end
+
+  describe "#poker_value" do
+    subject(:poker_card) { Card.new(:spades, :king) }
+
+    it "returns the value of the card as an integer" do
+      expect(poker_card.poker_value).to eq(12)
+    end
+
+    it "does not return the value of the card as a string" do
+      expect(poker_card.poker_value).to_not eq('12')
+    end
+  end
 end
