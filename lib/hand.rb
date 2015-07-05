@@ -1,6 +1,18 @@
 class Hand
   attr_accessor :cards
 
+  POKER_POINTS = {
+                  :straight_flush? => 9,
+                  :four_of_kind? => 8,
+                  :full_house? => 7,
+                  :flush? => 6,
+                  :straight? => 5,
+                  :three_of_kind? => 4,
+                  :two_pairs? => 3,
+                  :one_pair? => 2,
+                  :high_card? => 1
+                }
+
   def self.deal_from(deck)
     Hand.new(deck.take(5))
   end

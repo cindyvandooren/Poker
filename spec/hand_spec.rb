@@ -312,4 +312,17 @@ describe Hand do
     end
   end
 
+  describe "#points" do
+    it "returns 0 if the hand is a bad hand" do
+      expect(bad_hand.points).to eq(0)
+    end
+
+    it "returns 9 if the hand is a straight flush" do
+      expect(straight_flush_hand.points).to eq(9)
+    end
+
+    it "returns 5 if the hand is a straight hand" do
+      expect(straight_hand.points).to eq(5)
+    end
+  end
 end
