@@ -29,4 +29,14 @@ class Hand
 
     deck.return(del_cards)
   end
+
+  def high_card?
+    highs = [:one, :jack, :king, :queen]
+
+    @cards.each do |card|
+      return true if highs.include?(card.value)
+    end
+
+    false
+  end
 end
