@@ -44,4 +44,8 @@ class Hand
     @cards.map { |card| card.poker_value }.uniq.count == 4
   end
 
+  def two_pairs?
+    @cards.map { |card| card.poker_value }.uniq.count == 3
+  end
+
 end
