@@ -1,8 +1,10 @@
 class Player
   attr_reader :hand, :pot
 
-  def initialize(hand = Hand.from_deck, pot)
-    @hand = hand
+  def initialize(pot)
     @pot = pot
+  end
+
+  def prompt_user
   end
 end
