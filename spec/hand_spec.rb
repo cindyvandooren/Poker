@@ -112,4 +112,33 @@ describe Hand do
       expect { hand_to_return.return(return_deck, new_set[0..4]) }.to raise_error("you can return up to three cards")
     end
   end
+
+  describe "#high_card?" do
+    high_set = [
+                 Card.new(:spades, :king),
+                 Card.new(:hearts, :one),
+                 Card.new(:diamonds, :two),
+                 Card.new(:clovers, :five),
+                 Card.new(:hearts, :seven)
+               ]
+
+    bad_set = [
+                 Card.new(:spades, :two),
+                 Card.new(:diamonds, :three),
+                 Card.new(:hearts, :seven),
+                 Card.new(:clovers, :nine),
+                 Card.new(:spades, :ten)
+              ]
+
+    subject(:high_hand) { Hand.new(high_set) }
+    subject(:bad_hand) { Hand.new(bad_set) }
+
+    it "returns true if the hand has a high card" do
+      expect(high_hand.high_card?).to be(true)
+    end
+
+    it "returns false if the hand does not have a high card" do
+      expect(bad_hand.high_card?).to be(false)
+    end
+  end
 end
