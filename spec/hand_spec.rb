@@ -201,4 +201,30 @@ describe Hand do
       expect(bad_hand.three_of_kind?).to be false
     end
   end
+
+  straight_set = [
+                   Card.new(:spades, :two),
+                   Card.new(:hearts, :three),
+                   Card.new(:diamonds, :four),
+                   Card.new(:clovers, :five),
+                   Card.new(:spades, :six)
+                  ]
+
+  subject(:straight_hand) { Hand.new(straight_set) }
+  subject(:shuffled_straight_hand) { Hand.new(straight_set.shuffle) }
+
+  describe "#straight?" do
+    it "returns true if the hand is a straight" do
+      expect(straight_hand.straight?).to be true
+    end
+
+    it "returns true ignoring the order of the cards" do
+      expect(shuffled_straight_hand.straight?).to be true
+    end
+
+    it "returns false if the hand is not a straight" do
+      expect(bad_hand.straight?).to be false
+    end
+
+  end
 end
