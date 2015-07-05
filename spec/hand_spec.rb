@@ -287,4 +287,29 @@ describe Hand do
     end
   end
 
+  straight_flush_set = [
+                         Card.new(:spades, :king),
+                         Card.new(:spades, :jack),
+                         Card.new(:spades, :ten),
+                         Card.new(:spades, :nine),
+                         Card.new(:spades, :eight)
+                       ]
+
+  subject(:straight_flush_hand) { Hand.new(straight_flush_set) }
+  subject(:straight_shuffled_hand) { Hand.new(straight_flush_set.shuffle) }
+
+  describe "#straight_flush?" do
+    it "returns true if the hand is a straight_flush" do
+      expect(straight_flush_hand.straight_flush?).to be true
+    end
+
+    it "returns true if the cards are not sorted" do
+      expect(straight_shuffled_hand.straight_flush?).to be true
+    end
+
+    it "returns false if the hand is not a straight flush" do
+      expect(bad_hand.straight_flush?).to be false
+    end
+  end
+
 end
