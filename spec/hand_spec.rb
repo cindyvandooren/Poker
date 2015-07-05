@@ -181,4 +181,24 @@ describe Hand do
       expect(one_pair_hand.two_pairs?).to be false
     end
   end
+
+  describe "#three_of_kind?" do
+    three_kind_set = [
+                       Card.new(:spades, :two),
+                       Card.new(:hearts, :two),
+                       Card.new(:diamonds, :two),
+                       Card.new(:clovers, :five),
+                       Card.new(:hearts, :eight)
+                      ]
+
+    subject(:three_kind_hand) { Hand.new(three_kind_set) }
+
+    it "returns true if the hand has three cards of a kind" do
+      expect(three_kind_hand.three_of_kind?).to be true
+    end
+
+    it "returns false if there are no 3 cards of a kind" do
+      expect(bad_hand.three_of_kind?).to be false
+    end
+  end
 end

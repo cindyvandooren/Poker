@@ -49,4 +49,9 @@ class Hand
     poker_values.select { |value| poker_values.count(value) == 2 }.uniq.count == 2
   end
 
+  def three_of_kind?
+    poker_values = @cards.map { |card| card.poker_value }
+    poker_values.select { |value| poker_values.count(value) == 3}.uniq.count == 1
+  end
+
 end
