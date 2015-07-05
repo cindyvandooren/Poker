@@ -3,22 +3,21 @@ require 'hand'
 require 'card'
 
 describe Hand do
-  let(:deck) { double("deck", take: cards) }
+  describe "::deal_from" do
+    it "deals a hand of 5 cards" do
+      deck_cards = [
+                      Card.new(:spades, :one),
+                      Card.new(:spades, :two),
+                      Card.new(:spades, :three),
+                      Card.new(:spades, :four),
+                      Card.new(:spades, :five)
+                    ]
 
-  let(:cards) do
-    [ Card.new(:spades, :two),
-      Card.new(:spades, :three),
-      Card.new(:spades, :four),
-      Card.new(:spades, :five),
-      Card.new(:spades, :six)
-    ]
-  end
+      deck = double("deck")
+      expect(deck).to receive(:take).with(5).and_return(deck_cards)
 
-  subject(:hand) { Hand.new(deck) }
-
-  describe "#initialize" do
-    it "takes 5 cards from the deck" do
-      expect(hand.cards.count).to eq(5)
+      hand = Hand.deal_from(deck)
+      expect(hand.cards).to match_array(deck_cards)
     end
   end
 
@@ -63,5 +62,24 @@ describe Hand do
       new_hand.cards = []
       expect{ new_hand.draw(6) }.to raise_error("hand is too big")
     end
+  end
+
+  describe "#return(cards)" do
+    xit "decreases the hand with a number of cards" do
+
+    end
+
+    xit "returns the indicated cards" do
+
+    end
+
+    xit "returns the cards to the deck" do
+    end
+
+    xit "raises an error when more than 3 cards are returned" do
+
+    end
+
+
   end
 end
