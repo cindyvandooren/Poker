@@ -22,32 +22,29 @@ describe Hand do
   end
 
   describe "#count" do
+    new_cards = [
+                  Card.new(:hearts, :one),
+                  Card.new(:hearts, :two),
+                  Card.new(:hearts, :three),
+                  Card.new(:hearts, :four),
+                  Card.new(:hearts, :five)
+                ]
+
+    subject(:new_hand) { Hand.new(new_cards) }
+
     it "counts the number of cards in the hand correctly" do
-      expect(hand.count).to eq(5)
+      expect(new_hand.count).to eq(5)
     end
 
-    subject(:empty_hand) { Hand.new(deck) }
+    no_cards = []
+
+    subject(:empty_hand) { Hand.new(no_cards) }
 
     it "returns 0 if there are no cards in the hand" do
       empty_hand.cards = []
       expect(empty_hand.count).to eq(0)
     end
   end
-
-  let(:new_deck) { double("new_deck", take: new_cards) }
-
-  let(:new_cards) do
-    [ Card.new(:spades, :two),
-      Card.new(:spades, :three),
-      Card.new(:spades, :four),
-      Card.new(:spades, :five),
-      Card.new(:spades, :six),
-      Card.new(:spades, :seven),
-      Card.new(:spades, :eight)
-    ]
-  end
-
-  subject(:new_hand) { Hand.new(new_deck) }
 
   describe "#draw(amount)" do
     it "it adds 5 cards from the deck to the hand" do

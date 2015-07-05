@@ -1,9 +1,7 @@
-require 'deck'
-
 class Hand
   attr_accessor :cards
 
-  def deal_from(deck)
+  def self.deal_from(deck)
     Hand.new(deck.take(5))
   end
 
