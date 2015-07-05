@@ -76,22 +76,40 @@ describe Hand do
     end
   end
 
-  describe "#return(cards)" do
-    xit "decreases the hand with a number of cards" do
+  describe "#return(deck, cards)" do
+    let(:return_deck) { double("return_deck")}
 
+    new_set = [
+                Card.new(:diamonds, :one),
+                Card.new(:diamonds, :two),
+                Card.new(:diamonds, :three),
+                Card.new(:diamonds, :four),
+                Card.new(:diamonds, :five)
+              ]
+
+    subject(:hand_to_return) { Hand.new(new_set) }
+
+
+    it "decreases the hand with a number of cards" do
+      allow(return_deck).to receive(:return).with(new_set[0..2])
+      hand_to_return.return(return_deck, new_set[0..2])
+      expect(hand_to_return.count).to eq(2)
     end
 
-    xit "returns the indicated cards" do
-
+    it "returns the indicated cards" do
+      allow(return_deck).to receive(:return).with(new_set[0..2])
+      hand_to_return.return(return_deck, new_set[0..2])
+      expect(hand_to_return.cards).to match_array(new_set[3..4])
     end
 
-    xit "returns the cards to the deck" do
+    it "returns the cards to the deck" do
+      expect(return_deck).to receive(:return).with(new_set[0..2])
+      hand_to_return.return(return_deck, new_set[0..2])
     end
 
-    xit "raises an error when more than 3 cards are returned" do
-
+    it "raises an error when more than 3 cards are returned" do
+      allow(return_deck).to receive(:return).with(new_set[0..4])
+      expect { hand_to_return.return(return_deck, new_set[0..4]) }.to raise_error("you can return up to three cards")
     end
-
-
   end
 end

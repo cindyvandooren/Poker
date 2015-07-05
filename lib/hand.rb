@@ -19,7 +19,7 @@ class Hand
   end
 
   def return(deck, del_cards)
-    raise "you can return up to three cards" if cards.count > 3
+    raise "you can return up to three cards" if del_cards.count > 3
     remaining_cards = []
     @cards.each do |card|
       remaining_cards << card unless del_cards.include?(card)
