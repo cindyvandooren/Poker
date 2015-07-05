@@ -250,7 +250,7 @@ describe Hand do
   full_house_set = [
                      Card.new(:spades, :four),
                      Card.new(:hearts, :four),
-                     Card.new(:hearts, :four),
+                     Card.new(:clovers, :four),
                      Card.new(:diamonds, :eight),
                      Card.new(:hearts, :eight)
                     ]
@@ -264,6 +264,26 @@ describe Hand do
 
     it "returns false if the hand is not a full house" do
       expect(bad_hand.full_house?).to be false
+    end
+  end
+
+  four_of_kind_set = [
+                       Card.new(:spades, :four),
+                       Card.new(:hearts, :four),
+                       Card.new(:diamonds, :four),
+                       Card.new(:clovers, :four),
+                       Card.new(:spades, :three)
+                     ]
+
+  subject(:four_of_kind_hand) { Hand.new(four_of_kind_set) }
+
+  describe "#four_of_kind?" do
+    it "returns true if the hand has four of a kind" do
+      expect(four_of_kind_hand.four_of_kind?).to be true
+    end
+
+    it "returns false if hand doesn't have four of a kind" do
+      expect(bad_hand.four_of_kind?).to be false
     end
   end
 

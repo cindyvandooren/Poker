@@ -75,4 +75,6 @@ class Hand
     three_of_kind? && one_pair?
   end
 
+
+
 end
