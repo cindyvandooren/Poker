@@ -325,4 +325,18 @@ describe Hand do
       expect(straight_hand.points).to eq(5)
     end
   end
+
+  describe "#beats?(other_hand)" do
+    it "returns true when straight flush and bad hand" do
+      expect(straight_flush_hand.beats?(bad_hand)).to be true
+    end
+
+    it "returns false when bad hand and straight flush hand" do
+      expect(bad_hand.beats?(straight_flush_hand)).to be false
+    end
+
+    it "returns false when hands have equal number of points" do
+      expect(straight_flush_hand.beats?(straight_flush_hand)).to be false
+    end
+  end
 end
