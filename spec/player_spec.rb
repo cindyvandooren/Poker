@@ -41,4 +41,29 @@ describe Player do
      end
   end
 
+  describe "#return(cards)" do
+    let(:new_hand) { double("hand") }
+    let(:cards) { double("cards") }
+
+    before(:each) do
+      player.get_hand(hand)
+      allow(hand).to receive(:cards).and_return(cards)
+    end
+
+    it "should return the players cards" do
+      expect(new_player.return(cards)).to eq(cards)
+    end
+
+    it "should set the players hand to nil" do
+      new_player.return(cards)
+      expect(new_player.hand).to match_array([])
+    end
+  end
+
+  describe "#draw(cards)" do
+
+  end
+
+
+
 end

@@ -18,4 +18,8 @@ class Player
   def get_winnings(amount)
     @pot += amount
   end
+
+  def return(cards)
+
+  end
 end
