@@ -31,6 +31,7 @@ describe Player do
         new_player.take_bet(2000)
       end.to raise_error("bet can't be higher than pot")
     end
+  end
 
    describe "#get_winnings" do
      it "should increase the players bankroll with the winnings" do
